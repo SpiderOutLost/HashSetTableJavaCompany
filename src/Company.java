@@ -2,8 +2,8 @@ public class Company {
     private String Country;
     private String City;
     private String Street;
-    private int numberHouse;
-    public Company(String country, String city, String street, int numberHouse) {
+    private String numberHouse;
+    public Company(String country, String city, String street, String numberHouse) {
         this.Country = country;
         this.City = city;
         this.Street = street;
@@ -22,7 +22,7 @@ public class Company {
         return Street;
     }
 
-    public int getNumberHouse() {
+    public String getNumberHouse() {
         return numberHouse;
     }
     public boolean equals(Object obj) {
@@ -32,7 +32,7 @@ public class Company {
             return company.getCountry().equals(this.Country) &&
                     company.getCity().equals(this.City) &&
                     company.getStreet().equals(this.Street) &&
-                    company.getNumberHouse() == this.numberHouse;
+                    company.getNumberHouse().equals(this.numberHouse);
         }
         else {
             return false;
@@ -42,6 +42,6 @@ public class Company {
         return getCountry() + " " + getCity() +" " + getStreet() + " " + getNumberHouse();
     }
     public int hashCode() {
-        return Country.hashCode() + City.hashCode() + Street.hashCode() + numberHouse;
+        return City.hashCode()+Street.hashCode() + numberHouse.hashCode();
     }
 }

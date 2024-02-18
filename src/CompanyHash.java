@@ -1,11 +1,10 @@
 public class CompanyHash  {
-
     private static final double LOAD_FACTOR = 0.75;
-    private int INITIAL_CAPACITY = 8;
+    private final int INITIAL_CAPACITY = 16;
     private int size = 0;
     private Entry[] array = new Entry[INITIAL_CAPACITY];
     private static class Entry{
-        private Company data;
+        private final Company data;
         Entry next;
 
         public Entry(Company data, Entry next) {
@@ -13,7 +12,6 @@ public class CompanyHash  {
             this.next = next;
 
         }
-
     }
     boolean add(Company company){
         if (size >= array.length * LOAD_FACTOR) {
@@ -50,15 +48,19 @@ public class CompanyHash  {
             }
         }
     }
-    public void FindCompany(Company company, Entry[] dst){
-            int position = getElementPosition(company, dst.length);
-            Entry NecessaryElement = dst[position];
-            while (true){
-                if (NecessaryElement.data.equals(company)){
-                    System.out.println();
-                }
-            }
-    }
+  public void FindCompany(Company company) {
+
+      int position = getElementPosition(company, array.length); // где на каком месте есть элемент, буду передавать ссылки
+      Entry needFindElement = array[position];
+      while (needFindElement!= null) {
+          if (needFindElement.data.equals(company)) {
+              System.out.println("Компания есть");
+              return;
+          }
+          needFindElement = needFindElement.next;
+      }
+      System.out.println("Компанния не найдена");
+  }
     boolean remove(Company company) {
         int position = getElementPosition(company, array.length);
         if (array[position] == null) {
@@ -106,10 +108,19 @@ public class CompanyHash  {
         }
         array = newArray;
     }
+
     public void Print(){
+
         for (Entry entry: array
              ) {
-            if (entry != null) System.out.println(entry.data.PrintCompany());
+            if (entry != null){
+                System.out.print(entry.data.PrintCompany());
+                if (entry.next != null) System.out.println(" -> " + entry.next.data.PrintCompany());
+                else {
+                    System.out.println();
+                }
+            }
+
         }
     }
 }

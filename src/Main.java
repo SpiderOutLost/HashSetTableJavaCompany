@@ -13,14 +13,45 @@ public class Main {
         String line;
 
         while ((line = reader.readLine()) != null){
-            String[] s = line.split(" ");
-            Company company = new Company(s[0], s[1], s[2], s[3]);
-            companyHash.add(company);
+            companyHash.add(line);
 
         }
+        System.out.println("Выберите работу:\n"+
+                "1 - добавить компанию\n" +
+                "2 - найти компанию" +
+                "3 - удалить компанию\n" +
+                "4 - вывести все компании\n" +
+                "5 - выйти из программы");
+        // 1 - добавить, 2 - найти, 3 - удалить, 4 - вывести
         reader.close();
+        while(true){
+            Scanner in = new Scanner(System.in);
+            int key = in.nextInt();
+            switch (key){
+                case 1:
+                    System.out.println("Введите местоположение компании через пробел, которую хотите добавить");
+                    Scanner LineADD = new Scanner(System.in); // Полное местоположение компании через пробел
+                    String line_add = LineADD.nextLine();
 
-        Company company_Proverka_na_nahojdenie = new Company("Россия", "Москва", "Арбат", "12");
-        companyHash.FindCompany(company_Proverka_na_nahojdenie);
+                    companyHash.add(line_add);
+                    break;
+                case 2:
+                    System.out.println("Введите местоположение компании через пробел, которую хотите найти");
+                    Scanner LineInSpisiok = new Scanner(System.in); // Полное местоположение компании через пробел
+                    String line_in_spisok = LineInSpisiok.nextLine();
+                    companyHash.FindCompany(line_in_spisok);
+                    break;
+                case 3:
+                    System.out.println("Введите местоположение компании через пробел, которую хотите удалить");
+                    Scanner removeCompanyLine = new Scanner(System.in); // Полное местоположение компании через пробел
+                    String remove_line = removeCompanyLine.nextLine();
+                    companyHash.remove(remove_line);
+                    break;
+                case 4:
+                    companyHash.Print();
+                    break;
+                case 5: break;
+            }
+        }
     }
 }

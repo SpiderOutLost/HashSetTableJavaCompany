@@ -26,7 +26,7 @@ public class Company {
         return numberHouse;
     }
     public boolean equals(Object obj) {
-        if (obj instanceof CompanyHash){
+        if (obj instanceof Company){
             Company company = (Company) obj;
 
             return company.getCountry().equals(this.Country) &&

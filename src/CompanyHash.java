@@ -13,7 +13,9 @@ public class CompanyHash  {
 
         }
     }
-    boolean add(Company company){
+    boolean add(String CompanyLine){
+        String[] s = CompanyLine.split(" ");
+        Company company = new Company(s[0],s[1], s[2],s[3]);
         if (size >= array.length * LOAD_FACTOR) {
             increaseArray();
         }
@@ -39,7 +41,6 @@ public class CompanyHash  {
                 }
                 else if(entryExistedElement.next == null ){
                     entryExistedElement.next = new Entry(company, null);
-
                     return true;
                 }
                 else {
@@ -48,8 +49,9 @@ public class CompanyHash  {
             }
         }
     }
-  public void FindCompany(Company company) {
-
+  public void FindCompany(String CompanyLine) {
+      String[] s = CompanyLine.split(" ");
+      Company company = new Company(s[0],s[1], s[2],s[3]);
       int position = getElementPosition(company, array.length); // где на каком месте есть элемент, буду передавать ссылки
       Entry needFindElement = array[position];
       while (needFindElement!= null) {
@@ -61,7 +63,9 @@ public class CompanyHash  {
       }
       System.out.println("Компанния не найдена");
   }
-    boolean remove(Company company) {
+    boolean remove(String CompanyLine) {
+        String[] s = CompanyLine.split(" ");
+        Company company = new Company(s[0],s[1], s[2],s[3]);
         int position = getElementPosition(company, array.length);
         if (array[position] == null) {
             return false;
